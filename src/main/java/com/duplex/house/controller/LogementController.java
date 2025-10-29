@@ -42,7 +42,7 @@ public class LogementController {
     
     // API pour consulter un logement
     @GetMapping("/{id}/edit")
-    public ResponseEntity<Logement> getLogementById(@PathVariable Long id) {
+    public ResponseEntity<Logement> getLogementById(@PathVariable Integer id) {
     	Optional<Logement> logement = logementRepository.findById(id);
         
         if (logement.isPresent()) {
@@ -54,7 +54,7 @@ public class LogementController {
     
     // API pour modifier un logement
     @PutMapping("/{id}/update")
-    public ResponseEntity<Logement> updateLogement(@PathVariable Long id, @RequestBody Logement logementDetails) {
+    public ResponseEntity<Logement> updateLogement(@PathVariable Integer id, @RequestBody Logement logementDetails) {
         
         Optional<Logement> optionalLogement = logementRepository.findById(id);
 
@@ -79,7 +79,7 @@ public class LogementController {
     }
     
     @DeleteMapping("/{id}/delete")
-    public ResponseEntity<Void> deleteLogement(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteLogement(@PathVariable Integer id) {
         Optional<Logement> deletedLogement = logementService.softDelete(id);
 
         if (deletedLogement.isPresent()) {

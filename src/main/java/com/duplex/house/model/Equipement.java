@@ -21,6 +21,8 @@ public class Equipement extends BaseEntity {
 	
 	private String nom;
 	
+	private String description;
+	
 	private Integer deletedBy;
     
     protected Date deletedAt;

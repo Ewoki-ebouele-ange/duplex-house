@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -38,5 +40,13 @@ public class User extends BaseEntity{
     private List<Logement> logements;
     
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @JsonManagedReference("User-reservation")
     private Set<Reservation> reservations = new HashSet<>();
+    
+ // Relation Many-to-Many avec les rôles
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", 
+               joinColumns = @JoinColumn(name = "user_id"), 
+               inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 }

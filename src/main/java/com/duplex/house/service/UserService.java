@@ -19,7 +19,7 @@ public class UserService {
     private UserRepository userRepository;
 	
 	
-	public Optional<User> softDelete(Long id) {
+	public Optional<User> softDelete(Integer id) {
 		
         Optional<User> optionalUser = userRepository.findById(id);
 

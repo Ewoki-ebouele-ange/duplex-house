@@ -43,7 +43,7 @@ public class UserController {
     
     // API pour consulter un utilisateur
     @GetMapping("/{id}/edit")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
     	Optional<User> utilisateur = userRepository.findById(id);
         
         if (utilisateur.isPresent()) {
@@ -55,7 +55,7 @@ public class UserController {
     
     // API pour modifier un utilisateur
     @PutMapping("/{id}/update")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
         
         Optional<User> optionalUser = userRepository.findById(id);
 
@@ -79,7 +79,7 @@ public class UserController {
     }
     
     @DeleteMapping("/{id}/delete")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         Optional<User> deletedUser = userService.softDelete(id);
 
         if (deletedUser.isPresent()) {

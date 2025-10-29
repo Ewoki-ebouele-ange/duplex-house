@@ -5,6 +5,9 @@ import java.util.Date;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,15 +23,17 @@ public class Reservation extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")
     @JoinColumn(name = "user_id")
+	@JsonBackReference("User-reservation")
     private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("logementId")
     @JoinColumn(name = "logement_id")
+    @JsonBackReference("Logement-reservation")
     private Logement logementId;
     
     // Champs supplémentaires
-    private String codeReservation;
+    private Date dateReservation;
     private double totalPrice;
     private Date dateDebut;
     private Date dateFin;

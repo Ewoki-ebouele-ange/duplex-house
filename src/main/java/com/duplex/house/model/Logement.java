@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -44,6 +46,7 @@ public class Logement extends BaseEntity {
     protected Date deletedAt;
     
     @OneToMany(mappedBy = "logementId", cascade = CascadeType.ALL)
+    @JsonManagedReference("Logement-reservation")
     private Set<Reservation> reservations = new HashSet<>();
     
     @OneToMany(mappedBy = "logementId", cascade = CascadeType.ALL)

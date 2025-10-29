@@ -18,7 +18,7 @@ public class LogementService {
 	@Autowired
     private LogementRepository logementRepository;
 	
-	public Optional<Logement> softDelete(Long id) {
+	public Optional<Logement> softDelete(Integer id) {
 		
         Optional<Logement> optionalLogement = logementRepository.findById(id);
 
